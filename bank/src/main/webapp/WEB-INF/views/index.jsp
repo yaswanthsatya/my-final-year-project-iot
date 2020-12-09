@@ -16,7 +16,7 @@
 
 
 	<h2>Welcome to World Bank!</h2>
-
+	
 	<div align="right">
 		<div style="float: right; width: 130px">
 			<form action="logout">
@@ -32,7 +32,7 @@
 
 	<br />
 	<hr>
-	<%-- Account balance is : ${bal} --%>
+	Account balance is : ${bal}
 	<div style="display: flex; justify-content: center;">
 		<form action="showForm">
 			<input type="submit" value="Add Beneficiary" class="btn btn-primary">

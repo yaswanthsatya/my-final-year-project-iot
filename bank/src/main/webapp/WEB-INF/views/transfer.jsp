@@ -10,8 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%-- tr...
-	<c:forEach var="tempCustomer" items="${acc}">
+	tr...
+<%-- 	<c:forEach var="tempCustomer" items="${acc}">
 	
 			 ${tempCustomer.firstName}
 			${temp.amount}

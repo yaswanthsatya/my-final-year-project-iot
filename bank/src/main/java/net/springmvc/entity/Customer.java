@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +14,7 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name="ben_id")
 	private int id;
 	
 	@Column(name="name")
@@ -56,6 +57,8 @@ public class Customer {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	
 
 	@Override
 	public String toString() {

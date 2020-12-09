@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,7 +19,7 @@ public class Account {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "acc_id")
 	private int id;
 
 	@Column(name = "first_name")
@@ -45,8 +46,10 @@ public class Account {
 	@Column(name = "account_number")
 	private String accountNo;
 	
-	@Column(name = "balance", nullable = false, columnDefinition = "int default 2000") 
+	@Column(name = "balance") 
 	private int balance;
+	
+	@JoinColumn(name="id", referencedColumnName="id")
 	
 	
 	public int getBalance() {

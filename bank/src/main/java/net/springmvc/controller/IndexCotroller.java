@@ -29,10 +29,11 @@ public class IndexCotroller
 	private LoanService loanService;
 	@Autowired
 	private RechargeService rechargeService;
-	
+	@Autowired
 	private CustomerService customerService;
-	public int blns = 20000;
-		
+
+	
+//	public int blns = 20000;	
 	@RequestMapping("/")
 	public String startPage()
 	{
@@ -59,17 +60,14 @@ public class IndexCotroller
 	}
 	
 	@RequestMapping("/dashboard")
-	public ModelAndView dashboard(Model theModel)
+	public ModelAndView dashboard(Model theModel,Account theAccount)
 	{
-		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
-		
-		mv.addObject("bal",blns);
-		
+		theAccount.setBalance(500);
+		mv.addObject("bal",theAccount.getBalance());
 		return mv;
 	}
-	
 	
 	
 	@RequestMapping("/loan")
@@ -88,8 +86,8 @@ public class IndexCotroller
 	@RequestMapping("/transfer")
 	public ModelAndView transferPage(ModelAndView mv)
 	{
-		List<Customer> theCustomer = customerService.getCustomers();
-		mv.addObject("acc", theCustomer);
+//		List<Customer> theCustomer = customerService.getCustomers();
+//		mv.addObject("acc", theCustomer);
 		mv.setViewName("transfer");
 		return mv;
 	}
