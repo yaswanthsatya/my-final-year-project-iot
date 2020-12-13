@@ -2,17 +2,18 @@ package net.springmvc.controller;
 
 import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.springmvc.entity.Account;
-import net.springmvc.entity.Customer;
 import net.springmvc.entity.Loan;
 import net.springmvc.entity.Recharge;
 import net.springmvc.service.AccountService;
@@ -21,6 +22,7 @@ import net.springmvc.service.LoanService;
 import net.springmvc.service.RechargeService;
 
 @Controller
+@Transactional
 public class IndexCotroller 
 {
 	@Autowired
@@ -31,9 +33,10 @@ public class IndexCotroller
 	private RechargeService rechargeService;
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private SessionFactory session;
 
 	
-//	public int blns = 20000;	
 	@RequestMapping("/")
 	public String startPage()
 	{
@@ -62,9 +65,11 @@ public class IndexCotroller
 	@RequestMapping("/dashboard")
 	public ModelAndView dashboard(Model theModel,Account theAccount)
 	{
+		Session currentSession = session.getCurrentSession();
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");
-		theAccount.setBalance(500);
+		theAccount =  (Account) currentSession.get(Account.class, 2);
+		System.out.println(theAccount);
 		mv.addObject("bal",theAccount.getBalance());
 		return mv;
 	}
